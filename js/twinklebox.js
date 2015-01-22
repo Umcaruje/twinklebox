@@ -10,19 +10,19 @@ $(document).ready(function () {
 
 		var image_link = $(this).attr('href');
 
-		var twinklebox = '<div id="twinklebox-overlay">' +
-						'<div id="twinklebox">' +
-						'<img src="' + image_link + '">' +
-						'<div id="twinklebox-nav-left"></div>' +
-						'<div id="twinklebox-nav-right"></div>' +
-						'</div>' +
-						'</div>';
+		var twinklebox = '<div id="tb-overlay">' +
+						 '<div id="twinklebox">' +
+						 '<img src="' + image_link + '">' +
+						 '<div id="tb-nav-left"></div>' +
+						 '<div id="tb-nav-right"></div>' +
+						 '</div>' +
+						 '</div>';
 		$('body').append(twinklebox);
-		$('#twinklebox-overlay').css('opacity', '1');
+		$('#tb-overlay').fadeIn(500);
 	});
 });
 
-$(document).on('click', '#twinklebox-overlay', function () {
-	$('#twinklebox-overlay').css('opacity', '0');
-	$('#twinklebox-overlay').remove();
+$(document).on('click', '#tb-overlay', function () {
+	$('#tb-overlay').fadeOut(500);
+	$('#tb-overlay').remove();
 });
