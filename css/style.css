@@ -1,0 +1,54 @@
+.container {
+	margin: 0 auto;
+	max-width:  800px;
+	background-color: #e4f6fc;
+	height: 100%;
+}
+#twinklebox-overlay {
+	position: fixed;
+	background-color: rgba(0, 0, 0, 0.2);
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 999;
+	text-align: center;
+	overflow-x:auto;
+	opacity: 0;
+	transition: opacity 0.5s ease-in-out 0s;
+}
+#twinklebox {
+	position: relative;
+	display: inline-block;
+	max-width: 100%;
+	max-height: calc(100vh - 80px);
+	z-index: 1000;
+	margin: 10px;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	border: 4px solid #fff;
+	transition: all 0.2s linear 0s;
+	
+}
+#twinklebox img {
+	display: block;
+	max-width: 100%;
+	max-height: calc(100vh - 80px);
+	transition: all 0.2s linear 0s;
+}
+
+#twinklebox-nav-left,
+#twinklebox-nav-right {
+	display: block;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	width: 40%;
+}
+#twinklebox-nav-left {
+	width: 40%;
+	left: 0;
+}
+#twinklebox-nav-right {
+	width: 60%;
+	right: 0;
+}
