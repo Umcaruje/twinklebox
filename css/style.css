@@ -21,9 +21,6 @@
 	max-width: 100vw;
 	max-height: 100vh;
 	z-index: 1000;
-	margin: 10px;
-	margin-top: 50px;
-	border: 4px solid #fff;
 	-webkit-transition: all 0.2s linear 0s;
 	transition: all 0.2s linear 0s;
 	
@@ -31,8 +28,11 @@
 #twinklebox img {
 	display: block;
 	box-sizing: border-box;
-	max-width: 100%;
-	max-height: calc(100vh - 80px);
+	max-width: 100vw;
+	max-height: 100vh;
+	padding: 10px;
+	padding-top: 50px;
+	border: 4px solid #fff;
 	-webkit-transition: all 0.2s linear 0s;
 	transition: all 0.2s linear 0s;
 }
