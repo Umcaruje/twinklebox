@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function () {
 				// Twinklebox
 			var twinklebox = '<div id="twinklebox">' +
 				'<img src="' + image_link + '">' +
-				'<div id="tb-nav-left"><svg class="tbi-previous"><use xlink:href="../img/sprite.svg#tbi-previous"></use></svg></div>' +
-				'<div id="tb-nav-right"><svg class="tbi-next"><use xlink:href="../img/sprite.svg#tbi-next"></use></svg></div>' +
+				'<div id="tb-nav-left"><svg class="tbi-previous"><use xlink:href="img/sprite.svg#tbi-previous"></use></svg></div>' +
+				'<div id="tb-nav-right"><svg class="tbi-next"><use xlink:href="img/sprite.svg#tbi-next"></use></svg></div>' +
 				'</div>';
 			// Create the overlay div
 			var elemDiv = document.createElement('div');
