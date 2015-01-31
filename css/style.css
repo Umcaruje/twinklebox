@@ -51,3 +51,10 @@
 	width: 60%;
 	right: 0;
 }
+/* Svg sprites */
+[class^="tbi-"], [class*=" tbi-"] {
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    fill: currentColor;
+}

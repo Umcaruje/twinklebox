@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+    <symbol id="tbi-loading" viewBox="0 0 512 512">
+      <path d="m486 258c0 99-64 182-152 214-3 11 1 19 9 24 98-35 168-128 169-238-7-5-16-7-26 0z"/>
+    </symbol>
+
+    <symbol id="tbi-next" viewBox="0 0 512 512">
+      <path d="m128 14l190 230-190 230 25 38c69-87 150-167 215-259l6-9-7-9-193-235z"/>
+    </symbol>
+
+    <symbol id="tbi-previous" viewBox="0 0 512 512">
+      <path d="m384 14l-190 230 190 230-25 38c-69-87-150-167-215-259l-6-9 7-9 193-235z"/>
+    </symbol>
+
+</svg>
