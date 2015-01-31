@@ -6,29 +6,42 @@ document.addEventListener('DOMContentLoaded', function () {
 	for (var i = 0; i < imgLinks.length; ++i) {
 		imgLinks[i].classList.remove('twinklebox');
 		var currentContent = imgLinks[i].outerHTML;
-		console.log('the length is ' + imgLinks[i].classList);
+		//console.log('classes left are' + imgLinks[i].classList);
 		var wrappedContent = '<a href="' + imgLinks[i].src + '" class="twinklebox">' + currentContent + '</a>';
 		imgLinks[i].outerHTML = wrappedContent;
 	};
-	/*$('.twinklebox').click(function (link) {
-		link.preventDefault();
 
-		var image_link = $(this).attr('href');
+	var Tblinks = document.querySelectorAll('a.twinklebox');
 
-		var twinklebox = '<div id="tb-overlay">' +
-						 '<div id="twinklebox">' +
-						 '<img src="' + image_link + '">' +
-						 '<div id="tb-nav-left"><svg class="tbi-previous"><use xlink:href="../img/sprite.svg#tbi-previous"></use></svg></div>' +
-						 '<div id="tb-nav-right"><svg class="tbi-next"><use xlink:href="../img/sprite.svg#tbi-next"></use></svg></div>' +
-						 '</div>' +
-						 '</div>';
-		$('body').append(twinklebox);
-		$('#tb-overlay').fadeIn(500);
-	});*/
+	for (var i = 0; i < Tblinks.length; i++) {
+		Tblinks[i].addEventListener('click', function (link) {
+			link.preventDefault();
+			// Get the image URL
+			var image_link = this.getAttribute('href');
+
+			//console.log('The image link is ' + image_link)
+
+				// Twinklebox
+			var twinklebox = '<div id="twinklebox">' +
+				'<img src="' + image_link + '">' +
+				'<div id="tb-nav-left"><svg class="tbi-previous"><use xlink:href="../img/sprite.svg#tbi-previous"></use></svg></div>' +
+				'<div id="tb-nav-right"><svg class="tbi-next"><use xlink:href="../img/sprite.svg#tbi-next"></use></svg></div>' +
+				'</div>';
+			// Create the overlay div
+			var elemDiv = document.createElement('div');
+			elemDiv.id = 'tb-overlay'
+			elemDiv.innerHTML = twinklebox;
+			// Add eventListener for closing
+			elemDiv.addEventListener('click', closeTwinklebox, false);
+			// Append twinklebox to body
+			document.body.appendChild(elemDiv);
+			elemDiv.classList.add('tbVisible');
+			//$('#tb-overlay').fadeIn(500);
+		});
+	}
 });
 
-/*$(document).on('click', '#tb-overlay', function () {
-	$('#tb-overlay').fadeOut(500);
-	$('#tb-overlay').remove();
-});
-*/
+var closeTwinklebox = function () {
+	var tbOverlay = document.querySelector('#tb-overlay');
+	tbOverlay.parentNode.removeChild(tbOverlay);
+};
