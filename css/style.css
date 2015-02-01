@@ -5,7 +5,7 @@
 	height: 100%;
 }
 
-#tb-overlay {
+#tbOverlay {
 	position: fixed;
 	background-color: rgba(0, 0, 0, 0.2);
 	top: 0;
@@ -36,16 +36,23 @@
 	max-height: calc(100vh - 68px);
 	-webkit-transition: all 0.2s linear 0s;
 	transition: all 0.2s linear 0s;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }
 
-#tb-overlay.tbVisible {
+#tbOverlay.tbVisible {
+	-webkit-transition: 1s;
 	transition: 1s;
 	opacity: 1;
 }
+
+
 /* Navigation */
 
-#tb-nav-left,
-#tb-nav-right {
+#tbNavPrev,
+#tbNavNext {
 	display: block;
 	position: absolute;
 	top: 0;
@@ -54,33 +61,33 @@
 	transition: all 0.3s linear 0.1s;
 }
 
-#tb-nav-left {
+#tbNavPrev {
 	width: 40%;
 	left: 0;
 }
 
-#tb-nav-right {
+#tbNavNext {
 	width: 40%;
 	right: 0;
 }
 
-#tb-nav-left svg,
-#tb-nav-right svg {
+#tbNavPrev svg,
+#tbNavNext svg {
 	display: inline-block;
 	position: absolute;
 	top: 45%;
 }
 
-#tb-nav-right svg {
+#tbNavNext svg {
 	right: 2px;
 }
 
-#tb-nav-left svg {
+#tbNavPrev svg {
 	left: 2px;
 }
 
-#tb-nav-left:hover,
-#tb-nav-right:hover {
+#tbNavPrev:hover,
+#tbNavNext:hover {
 	opacity: 1;
 }
 /* Svg sprites */
