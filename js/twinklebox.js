@@ -22,65 +22,69 @@ document.addEventListener('DOMContentLoaded', function () {
 	for (var i = 0; i < tbLinks.length; i++) {
 		tbLinks[i].addEventListener('click', function (link) {
 			link.preventDefault();
-			// Get the image URL
-			var imageNum = tbImages.indexOf(this.getAttribute('href'));
-
-			// Twinklebox
-			var twinklebox = '<div id="twinklebox">' +
-				'<img src="' + tbImages[imageNum] + '" class="tbImage">' +
-				'<div id="tbNavPrev"><svg class="tbi-previous"><use xlink:href="img/sprite.svg#tbi-previous"></use></svg></div>' +
-				'<div id="tbNavNext"><svg class="tbi-next"><use xlink:href="img/sprite.svg#tbi-next"></use></svg></div>' +
-				'</div>';
-
-			// Create the overlay div
-			var elemDiv = document.createElement('div');
-			elemDiv.id = 'tbOverlay'
-			elemDiv.innerHTML = twinklebox;
-
-			// Append twinklebox to body
-			document.body.appendChild(elemDiv);
-			elemDiv.classList.add('tbVisible');
-
-			// Add eventListener for closing
-			elemDiv.addEventListener('click', closeTwinklebox, false);
-
-			// Event handler for the tbNavPrev button
-			elemDiv.querySelector('div#tbNavPrev').addEventListener('click', function (e) {
-				if (!e) var e = window.event;
-				e.cancelBubble = true;
-				if (e.stopPropagation) e.stopPropagation();
-				prevImage(elemDiv);
-			}, false);
-
-			// Event handler for the tbNavNext button
-			elemDiv.querySelector('div#tbNavNext').addEventListener('click', function (e) {
-				if (!e) var e = window.event;
-				e.cancelBubble = true;
-				if (e.stopPropagation) e.stopPropagation();
-				nextImage(elemDiv);
-			}, false);
-
-			elemDiv.querySelector('.tbImage').addEventListener('change', hideNavButtons(), false)
+			// Create Twinklebox
+			createTwinklebox(this);
 		});
 	}
 });
 
-var prevImage = function (elemDiv) {
+function createTwinklebox(imageLink) {
+	// Get image number in the album
+	var imageNum = tbImages.indexOf(imageLink.getAttribute('href'));
+
+	// Twinklebox
+	var twinklebox = '<div id="twinklebox">' +
+		'<img src="' + tbImages[imageNum] + '" class="tbImage">' +
+		'<div id="tbNavPrev"><svg class="tbi-previous"><use xlink:href="img/sprite.svg#tbi-previous"></use></svg></div>' +
+		'<div id="tbNavNext"><svg class="tbi-next"><use xlink:href="img/sprite.svg#tbi-next"></use></svg></div>' +
+		'</div>';
+
+	// Create the overlay div
+	var elemDiv = document.createElement('div');
+	elemDiv.id = 'tbOverlay'
+	elemDiv.innerHTML = twinklebox;
+
+	// Append twinklebox to body
+	document.body.appendChild(elemDiv);
+	elemDiv.classList.add('tbVisible');
+
+	// Add eventListener for closing
+	elemDiv.addEventListener('click', closeTwinklebox, false);
+
+	// Event handler for the tbNavPrev button
+	elemDiv.querySelector('div#tbNavPrev').addEventListener('click', function (e) {
+		if (!e) var e = window.event;
+		e.cancelBubble = true;
+		if (e.stopPropagation) e.stopPropagation();
+		prevImage(elemDiv);
+	}, false);
+
+	// Event handler for the tbNavNext button
+	elemDiv.querySelector('div#tbNavNext').addEventListener('click', function (e) {
+		if (!e) var e = window.event;
+		e.cancelBubble = true;
+		if (e.stopPropagation) e.stopPropagation();
+		nextImage(elemDiv);
+	}, false);
+
+	elemDiv.querySelector('.tbImage').addEventListener('change', hideNavButtons(elemDiv, this.src), false);
+};
+
+function prevImage (elemDiv) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
-	console.log(currImg);
-	prev = tbImages.indexOf(currImg) - 1;
+	var prev = tbImages.indexOf(currImg) - 1;
 	elemDiv.querySelector('.tbImage').src = tbImages[prev];
+	//hideNavButtons(elemDiv, currImg);
 }
 
-var nextImage = function (elemDiv) {
+function nextImage (elemDiv) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
-	next = tbImages.indexOf(currImg) + 1;
+	var next = tbImages.indexOf(currImg) + 1;
 	elemDiv.querySelector('.tbImage').src = tbImages[next];
+	//hideNavButtons(elemDiv, currImg);
 }
 
-var hideNavButtons = function (elemDiv) {
-	var currImg = elemDiv.querySelector('.tbImage').src;
-
+var hideNavButtons = function (elemDiv, currImg) {
 	if (tbImages.indexOf(currImg) == 0) {
 		elemDiv.querySelector('#tbNavPrev').style.display = ('none');
 	} else {
