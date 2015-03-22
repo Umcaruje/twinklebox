@@ -48,6 +48,9 @@ function createTwinklebox(imageLink) {
 	document.body.appendChild(elemDiv);
 	elemDiv.classList.add('tbVisible');
 
+	// Hide the appropriate nav buttons
+	hideNavButtons(elemDiv);
+
 	// Add eventListener for closing
 	elemDiv.addEventListener('click', closeTwinklebox, false);
 
@@ -56,7 +59,8 @@ function createTwinklebox(imageLink) {
 		if (!e) var e = window.event;
 		e.cancelBubble = true;
 		if (e.stopPropagation) e.stopPropagation();
-		prevImage(elemDiv);
+		changeImage(elemDiv, -1);
+		hideNavButtons(elemDiv);
 	}, false);
 
 	// Event handler for the tbNavNext button
@@ -64,39 +68,34 @@ function createTwinklebox(imageLink) {
 		if (!e) var e = window.event;
 		e.cancelBubble = true;
 		if (e.stopPropagation) e.stopPropagation();
-		nextImage(elemDiv);
+		changeImage(elemDiv, 1);
+		hideNavButtons(elemDiv);
 	}, false);
-
-	elemDiv.querySelector('.tbImage').addEventListener('change', hideNavButtons(elemDiv, this.src), false);
 };
 
-function prevImage (elemDiv) {
+function changeImage (elemDiv, a) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
-	var prev = tbImages.indexOf(currImg) - 1;
-	elemDiv.querySelector('.tbImage').src = tbImages[prev];
-	//hideNavButtons(elemDiv, currImg);
+	var change = tbImages.indexOf(currImg) + a;
+	elemDiv.querySelector('.tbImage').src = tbImages[change];
 }
 
-function nextImage (elemDiv) {
+var hideNavButtons = function (elemDiv) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
-	var next = tbImages.indexOf(currImg) + 1;
-	elemDiv.querySelector('.tbImage').src = tbImages[next];
-	//hideNavButtons(elemDiv, currImg);
-}
-
-var hideNavButtons = function (elemDiv, currImg) {
+	console.log(tbImages.indexOf(currImg));
+	console.log('The length is ' + tbImages.length )
 	if (tbImages.indexOf(currImg) == 0) {
 		elemDiv.querySelector('#tbNavPrev').style.display = ('none');
 	} else {
 		elemDiv.querySelector('#tbNavPrev').style.display = ('inline-block');
 	};
-	if (tbImages.indexOf(currImg) == tbImages.length) {
+	if (tbImages.indexOf(currImg) == tbImages.length - 1) {
 		elemDiv.querySelector('#tbNavNext').style.display = ('none');
 	} else {
 		elemDiv.querySelector('#tbNavNext').style.display = ('inline-block');
-	}
-}
+	};
+};
 var closeTwinklebox = function () {
 	var tbOverlay = document.querySelector('#tbOverlay');
 	tbOverlay.parentNode.removeChild(tbOverlay);
 };
+
