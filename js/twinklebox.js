@@ -12,14 +12,14 @@ document.addEventListener('DOMContentLoaded', function () {
 	// Push all links to an array
 	var tbLinks = document.querySelectorAll('a.twinklebox');
 	var tbImages = new Array;
-	for (var i = 0; i < tbLinks.length; i++) {
+	for (var i = 0; i < tbLinks.length; ++i) {
 		tbImages.push(tbLinks[i].getAttribute('href'))
 	};
 
 	// Make the tbImages array global
 	window.tbImages = tbImages;
 
-	for (var i = 0; i < tbLinks.length; i++) {
+	for (var i = 0; i < tbLinks.length; ++i) {
 		tbLinks[i].addEventListener('click', function (link) {
 			link.preventDefault();
 			// Create Twinklebox
@@ -41,12 +41,12 @@ function createTwinklebox(imageLink) {
 
 	// Create the overlay div
 	var elemDiv = document.createElement('div');
-	elemDiv.id = 'tbOverlay'
+	elemDiv.id = 'tbOverlay';
 	elemDiv.innerHTML = twinklebox;
 
 	// Append twinklebox to body
 	document.body.appendChild(elemDiv);
-	elemDiv.classList.add('tbVisible');
+	elemDiv.classList.add('tbFadeIn');
 
 	// Hide the appropriate nav buttons
 	hideNavButtons(elemDiv);
@@ -94,8 +94,11 @@ var hideNavButtons = function (elemDiv) {
 		elemDiv.querySelector('#tbNavNext').style.display = ('inline-block');
 	};
 };
-var closeTwinklebox = function () {
+var closeTwinklebox = function (elemDiv) {
 	var tbOverlay = document.querySelector('#tbOverlay');
-	tbOverlay.parentNode.removeChild(tbOverlay);
+	tbOverlay.classList.add('tbFadeOut');
+	setTimeout(function(){
+		tbOverlay.parentNode.removeChild(tbOverlay)
+		}, 500);
 };
 
