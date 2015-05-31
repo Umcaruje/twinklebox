@@ -73,16 +73,16 @@ function createTwinklebox(imageLink) {
 	}, false);
 };
 
-function changeImage (elemDiv, a) {
+function changeImage(elemDiv, a) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
 	var change = tbImages.indexOf(currImg) + a;
 	elemDiv.querySelector('.tbImage').src = tbImages[change];
 }
 
-var hideNavButtons = function (elemDiv) {
+function hideNavButtons(elemDiv) {
 	var currImg = elemDiv.querySelector('.tbImage').src;
-	console.log(tbImages.indexOf(currImg));
-	console.log('The length is ' + tbImages.length )
+	//console.log(tbImages.indexOf(currImg));
+	//console.log('The length is ' + tbImages.length);
 	if (tbImages.indexOf(currImg) == 0) {
 		elemDiv.querySelector('#tbNavPrev').style.display = ('none');
 	} else {
@@ -94,11 +94,11 @@ var hideNavButtons = function (elemDiv) {
 		elemDiv.querySelector('#tbNavNext').style.display = ('inline-block');
 	};
 };
-var closeTwinklebox = function (elemDiv) {
+
+function closeTwinklebox(elemDiv) {
 	var tbOverlay = document.querySelector('#tbOverlay');
 	tbOverlay.classList.add('tbFadeOut');
-	setTimeout(function(){
+	setTimeout(function () {
 		tbOverlay.parentNode.removeChild(tbOverlay)
-		}, 500);
+	}, 500);
 };
-
